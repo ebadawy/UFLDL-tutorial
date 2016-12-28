@@ -107,6 +107,8 @@ xPCAWhite = zeros(size(x));
 
 % -------------------- YOUR CODE HERE -------------------- 
 
+xPCAwhite = diag(1./sqrt(diag(S) + epsilon)) * xRot;
+
 %%================================================================
 %% Step 4b: Check your implementation of PCA whitening 
 %  Check your implementation of PCA whitening with and without regularisation. 
