@@ -44,6 +44,7 @@ xRot = U' * x; % (144x144) * (144x1000)
 
 % -------------------- YOUR CODE HERE -------------------- 
 covar = zeros(size(x, 1)); % You need to compute this
+covar = (1/w) * xRot * xRot';
 
 % Visualise the covariance matrix. You should see a line across the
 % diagonal against a blue background.
