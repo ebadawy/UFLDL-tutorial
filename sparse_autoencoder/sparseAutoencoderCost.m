@@ -42,23 +42,26 @@ b2grad = zeros(size(b2));
 % the gradient descent update to W1 would be W1 := W1 - alpha * W1grad, and similarly for W2, b1, b2. 
 % 
 
+m = size(data,2);
 
+%% Feedforward
+hidden_layer = sigmoid(W1 * data + b1);
+output_layer = sigmoid(W2 * hidden_layer + b2);
 
+%% mean square error
+diff = (output_layer - data);
+MSE = (0.5/m) * sum(sum(diff.^2));
 
+% computing KL divergence
+%% the average activation for the hidden layer (rho cap)
+sparsityParam_cap = mean(hidden_layer,2);
+KL = sparsityParam .* log(sparsityParam ./ sparsityParam_cap) ...
+	+ (1-sparsityParam) .* log((1-sparsityParam) ./ (1-sparsityParam_cap));
 
+%% regularization
+penalty = (0.5*lambda) * ( sum(sum(W1.^2)) + sum(sum(W2.^2)) );
 
-
-
-
-
-
-
-
-
-
-
-
-
+cost = MSE + penalty + beta * sum(KL);
 
 %-------------------------------------------------------------------
 % After computing the cost and gradient, we will convert the gradients back
