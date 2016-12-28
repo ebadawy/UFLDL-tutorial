@@ -63,6 +63,21 @@ penalty = (0.5*lambda) * ( sum(sum(W1.^2)) + sum(sum(W2.^2)) );
 
 cost = MSE + penalty + beta * sum(KL);
 
+%% gradient
+
+da_out = output_layer .* ( 1 - output_layer );
+delta_out = -1 * ( data - output_layer ) .* da_out;
+
+da_hidden = hidden_layer .* ( 1 - hidden_layer );
+dKL = -(sparsityParam ./ sparsityParam_cap) + ((1-sparsityParam) ./ (1-sparsityParam_cap));
+delta_hidden = ( ( W2' * delta_out ) + beta * dKL ) .* da_hidden ;
+
+W1grad =  (delta_hidden * data')/m + lambda*W1;
+b1grad = sum(delta_hidden,2)/m;
+
+W2grad = (delta_out * hidden_layer')/m + lambda*W2;
+b2grad = sum(delta_out,2)/m;
+
 %-------------------------------------------------------------------
 % After computing the cost and gradient, we will convert the gradients back
 % to a vector format (suitable for minFunc).  Specifically, we will unroll
