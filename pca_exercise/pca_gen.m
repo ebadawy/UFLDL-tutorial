@@ -58,7 +58,13 @@ imagesc(covar);
 
 % -------------------- YOUR CODE HERE -------------------- 
 k = 0; % Set k accordingly
-
+ev = diag(S); %% eigenvalues
+total_variance = sum(ev);
+current_var = 0;
+while current_var < .8 * total_variance
+	current_var = current_var + ev(k);
+	k = k + 1;
+end
 
 %%================================================================
 %% Step 3: Implement PCA with dimension reduction
