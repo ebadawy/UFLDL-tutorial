@@ -25,12 +25,12 @@ patches = zeros(patchsize*patchsize, numpatches);
 %  Image 1
 
 
-
-
-
-
-
-
+for i =1:10000
+	r = randi([1 512-patchsize]);
+	c = randi([1 512-patchsize]);
+	t = IMAGES(r:r+patchsize-1,c:c+patchsize-1,6);
+	patches(:,i) = t(:);
+end
 
 
 %% ---------------------------------------------------------------
