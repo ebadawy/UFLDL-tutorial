@@ -62,8 +62,8 @@ ev = diag(S); %% eigenvalues
 total_variance = sum(ev);
 current_var = 0;
 while current_var < .8 * total_variance
-	current_var = current_var + ev(k);
 	k = k + 1;
+	current_var = current_var + ev(k);
 end
 
 %%================================================================
