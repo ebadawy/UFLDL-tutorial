@@ -16,6 +16,10 @@ display_network(x(:,randsel));
 
 % -------------------- YOUR CODE HERE -------------------- 
 
+[h w] = size(x);
+mean_pixel = mean(x,1);
+x = bsxfun(@minus, x, repmat(mean_pixel,h,1));
+
 %%================================================================
 %% Step 1a: Implement PCA to obtain xRot
 %  Implement PCA to obtain xRot, the matrix in which the data is expressed
