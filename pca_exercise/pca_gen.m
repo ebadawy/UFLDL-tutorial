@@ -127,6 +127,8 @@ xPCAwhite = diag(1./sqrt(diag(S) + epsilon)) * xRot;
 
 % -------------------- YOUR CODE HERE -------------------- 
 
+covar = (1/w) * xPCAwhite * xPCAwhite';
+
 % Visualise the covariance matrix. You should see a red line across the
 % diagonal against a blue background.
 figure('name','Visualisation of covariance matrix');
