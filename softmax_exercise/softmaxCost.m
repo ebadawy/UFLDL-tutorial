@@ -23,16 +23,16 @@ thetagrad = zeros(numClasses, inputSize);
 %                You need to compute thetagrad and cost.
 %                The groundTruth matrix might come in handy.
 
+% Couldn't get the 100 iter when subtracting max theta, always exit after 35-45 iter
+% so instead I've subtracting .5 max theta and it worked fine
 
+theta = bsxfun(@minus, theta, max(theta,[],1)/2); 
+z = theta * data;
+a = exp(z);
+h = bsxfun(@rdivide, a, sum(a));
 
-
-
-
-
-
-
-
-
+cost = (-1/numCases) * sum(sum(groundTruth .* log(h))) + (lambda/2) * sum(sum(theta.^2));
+thetagrad = (-1/numCases) * (groundTruth - h) * data' + lambda * theta;
 
 % ------------------------------------------------------------------
 % Unroll the gradient matrices into a vector for minFunc
