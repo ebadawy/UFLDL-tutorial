@@ -83,6 +83,9 @@ end
 % -------------------- YOUR CODE HERE -------------------- 
 xHat = zeros(size(x));  % You need to compute this
 
+Ureduced = U(:,1:k);
+z = Ureduced' * x;
+xHat = Ureduced * z;
 
 % Visualise the data, and compare it to the raw data
 % You should observe that the raw and processed data are of comparable quality.
