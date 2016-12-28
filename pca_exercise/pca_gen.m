@@ -144,6 +144,8 @@ xZCAWhite = zeros(size(x));
 
 % -------------------- YOUR CODE HERE -------------------- 
 
+xZCAWhite = U * xPCAwhite;
+
 % Visualise the data, and compare it to the raw data.
 % You should observe that the whitened images have enhanced edges.
 figure('name','ZCA whitened images');
