@@ -29,6 +29,9 @@ x = bsxfun(@minus, x, repmat(mean_pixel,h,1));
 % -------------------- YOUR CODE HERE -------------------- 
 xRot = zeros(size(x)); % You need to compute this
 
+sigma = (1/w) * x * x'; % 144x144
+[U S V] = svd(sigma); % 144x144
+xRot = U' * x; % (144x144) * (144x1000)
 
 %%================================================================
 %% Step 1b: Check your implementation of PCA
